@@ -42,4 +42,19 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+
+
+    public function selectedPlan()
+    {
+        return $this->belongsTo(StripePlan::class, 'selected_plan_id');
+    }
+
+    /**
+     * Check if the user has a selected plan.
+     */
+    public function hasSelectedPlan()
+    {
+        return !is_null($this->selectedPlan);
+    }
 }
